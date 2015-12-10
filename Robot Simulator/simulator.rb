@@ -1,5 +1,3 @@
-
-
 class Robot
   attr_accessor :bearing, :coordinates
 
@@ -15,29 +13,11 @@ class Robot
   end
 
   def turn_right
-    @bearing =  case @bearing 
-                when :north
-                  :east
-                when :east
-                  :south
-                when :south
-                  :west
-                when :west
-                  :north
-                end
+    @bearing = DIRECTIONS[DIRECTIONS.index(@bearing) + 1] || :north
   end
 
   def turn_left
-    @bearing =  case @bearing
-                when :north
-                  :west
-                when :east
-                  :north
-                when :south
-                  :east
-                when :west
-                  :south
-                end
+    @bearing = DIRECTIONS[DIRECTIONS.index(@bearing) - 1] || :west
   end
 
   def at(x, y)
@@ -57,7 +37,6 @@ class Robot
       @coordinates[0] -= 1
     end
   end
-
 end
 
 class Simulator
@@ -77,21 +56,15 @@ class Simulator
       commands
   end
 
-
   def place(robot, where)
-    current_robot = robot
-    current_robot.at(where[:x], where[:y])
-    current_robot.orient(where[:direction])
+    robot.at(where[:x], where[:y])
+    robot.orient(where[:direction])
   end
 
   def evaluate(robot, directions)
-    instructions(directions).each do |dir|
-      robot.send(dir)
-    end
+    instructions(directions).each { |dir| robot.send(dir) }
   end
 end
-
-
 
 
 
