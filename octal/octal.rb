@@ -5,13 +5,12 @@ class Octal
     @number = number
   end
 
-
   def to_decimal
     @decimal_numbers = []
     count = -1
     exp = 0
     
-    if @number == "8" || @number == "9" || @number == "6789" || @number.to_i == 0
+    if @number.match(/\D/) || greater_than_8(@number)
       0
     else
       loop do
@@ -24,7 +23,9 @@ class Octal
     end
   end
 
-end
+  def greater_than_8(number)
+    nums = number.split ""
+    nums.any? { |n| n.to_i >= 8 }
+  end
 
-oct = Octal.new("1")
-oct.to_decimal
+end
