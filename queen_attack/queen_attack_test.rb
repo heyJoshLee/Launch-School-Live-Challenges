@@ -9,14 +9,12 @@ class QueensTest < Minitest::Test
   end
 
   def test_specific_placement
-    skip
     queens = Queens.new(white: [3, 7], black: [6, 1])
     assert_equal [3, 7], queens.white
     assert_equal [6, 1], queens.black
   end
 
   def test_multiple_boards_simultaneously
-    skip
     queens1 = Queens.new(white: [3, 7], black: [6, 1])
     queens2 = Queens.new(white: [5, 4], black: [7, 7])
     assert_equal [3, 7], queens1.white
@@ -26,14 +24,12 @@ class QueensTest < Minitest::Test
   end
 
   def test_cannot_occupy_same_space
-    skip
     assert_raises ArgumentError do
       Queens.new(white: [2, 4], black: [2, 4])
     end
   end
 
   def test_string_representation
-    skip
     queens = Queens.new(white: [2, 4], black: [6, 6])
     board = <<-BOARD.chomp
 _ _ _ _ _ _ _ _
