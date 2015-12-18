@@ -11,9 +11,9 @@ class PigLatin
 
     words.split(" ").each do |word|
       if VOWELS.include?(word[0])
-        translated_words << (word + "ay")
+        translated_words << (word + dialect)
       elsif first_two_yt_xr.include? word[0,2]
-        translated_words << (word + "ay")
+        translated_words << (word + dialect)
       elsif word[0,2] == "ye"
         translated_words << (shift_letters_then_push(word) + dialect)
       elsif first_three_squ_thr_sch.include? word[0,3]
